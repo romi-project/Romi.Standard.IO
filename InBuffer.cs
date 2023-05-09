@@ -136,11 +136,6 @@ namespace Romi.Standard.IO
             return ((ulong)hi) << 32 | lo;
         }
 
-        public byte[] DecodeSizedBuffer()
-        {
-            return DecodeBuffer(Decode4());
-        }
-
         public byte[] DecodeBuffer(int count)
         {
             byte[] buffer = new byte[count];
@@ -163,7 +158,7 @@ namespace Romi.Standard.IO
             bool nullTerminated = length < 0;
             if (length == 0)
             {
-                length = Decode4();
+                length = Decode2();
             }
             byte[] value = DecodeBuffer(Math.Abs(length));
             if (nullTerminated)
